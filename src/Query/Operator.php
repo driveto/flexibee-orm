@@ -8,6 +8,8 @@ final class Operator
 {
     public const ASC = 'A';
     public const DESC = 'D';
+    public const OR = 'or';
+    public const AND = 'and';
 
     private function __construct(
         public readonly string|int|float|bool|null $value,

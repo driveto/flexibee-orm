@@ -11,9 +11,6 @@ use Driveto\FlexibeeOrmBundle\FlexibeeMetadataExtractor;
  */
 class QueryBuilder
 {
-    public const AND = 'and';
-    public const OR = 'or';
-
     private string $agenda;
     private string $select = 'full';
     private string $where = '';
@@ -84,7 +81,7 @@ class QueryBuilder
      */
     public function andWhere(string|array|Expression $query): self
     {
-        $this->addWhere($query, self::AND);
+        $this->addWhere($query, Operator::AND);
 
         return $this;
     }
@@ -95,14 +92,14 @@ class QueryBuilder
      */
     public function orWhere(string|array|Expression $query): self
     {
-        $this->addWhere($query, self::OR);
+        $this->addWhere($query, Operator::OR);
 
         return $this;
     }
 
     /**
      * @param non-empty-array<string, CriterionType|array<CriterionType>>|non-empty-string|Expression|Expression[] $query
-     * @param self::AND|self::OR $operator
+     * @param Operator::AND|Operator::OR $operator
      */
     private function addWhere(string|array|Expression $query, string $operator): void
     {
@@ -201,7 +198,7 @@ class QueryBuilder
     /**
      * @param non-empty-array<string, CriterionType|array<CriterionType>>|Expression[] $criteria
      */
-    private function buildCriteriaQuery(array $criteria, string $logicOperator = self::AND): string
+    private function buildCriteriaQuery(array $criteria, string $logicOperator = Operator::AND): string
     {
         $criteriaQuery = [];
 

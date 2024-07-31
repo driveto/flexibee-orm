@@ -21,7 +21,7 @@ class Expression
      */
     public static function or(array ...$criteria): self
     {
-        return new self(QueryBuilder::OR, $criteria);
+        return new self(Operator::OR, $criteria);
     }
 
     /**
@@ -29,6 +29,6 @@ class Expression
      */
     public static function and(array ...$criteria): self
     {
-        return new self(QueryBuilder::AND, $criteria);
+        return new self(Operator::AND, $criteria);
     }
 }

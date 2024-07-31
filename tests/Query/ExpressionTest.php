@@ -16,7 +16,7 @@ final class ExpressionTest extends TestCase
         $criteria = [['foo' => 'bar'], ['bar' => Operator::notEqual('foo')]];
         $expression = Expression::or(...$criteria);
 
-        self::assertSame(QueryBuilder::OR, $expression->logicOperator);
+        self::assertSame(Operator::OR, $expression->logicOperator);
         self::assertSame($criteria, $expression->criteria);
     }
 
@@ -25,7 +25,7 @@ final class ExpressionTest extends TestCase
         $criteria = [['foo' => Operator::notEqual('bar')], ['bar' => 'foo']];
         $expression = Expression::and(...$criteria);
 
-        self::assertSame(QueryBuilder::AND, $expression->logicOperator);
+        self::assertSame(Operator::AND, $expression->logicOperator);
         self::assertSame($criteria, $expression->criteria);
     }
 }
