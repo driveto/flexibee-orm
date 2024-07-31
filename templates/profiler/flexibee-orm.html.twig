@@ -1,0 +1,75 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <img src="{{ asset('assets/img/profiler/hexagon-letter-f.svg') }}" alt="F">
+        <span class="sf-toolbar-value">{{ collector.getQueriesCount() }}</span>
+        <span class="sf-toolbar-label">in</span>
+        <span class="sf-toolbar-value">{{ collector.getQueriesExecutionTime() }}</span>
+        <span class="sf-toolbar-label">ms</span>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: collector.getQueriesCount() > 0 }) }}
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+        <span class="icon"><img src="{{ asset('assets/img/profiler/hexagon-letter-f.svg') }}" alt="F"></span>
+        <strong>Flexibee</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Queries Metrics</h2>
+    <div class="metrics">
+        <div class="metric">
+            <span class="value">{{ collector.getQueriesCount() }}</span>
+            <span class="label">Flexibee queries</span>
+        </div>
+
+        <div class="metric">
+            <span class="value">{{ collector.getQueriesExecutionTime() }} ms</span>
+            <span class="label">Execution time</span>
+        </div>
+
+        <div class="metric">
+            <span class="value">{{ collector.getFailedQueriesCount() }}</span>
+            <span class="label">Failed queries</span>
+        </div>
+    </div>
+
+    <h2>Queries</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>Query</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for repository, queries in collector.getQueriesByRepository() %}
+                <tr>
+                    <td colspan="3"><strong>{{ repository }}</strong></td>
+                </tr>
+                {% for query in queries %}
+                    <tr>
+                        <td class="nowrap">{{ loop.index }}</td>
+                        <td class="nowrap">{% if query.succeeded %}{{ query.executionTime | default('N/A') }} ms{% else %}FAILED{% endif %}</td>
+                        <td>
+                            {{ query }}
+                            <div class="text-small font-normal">
+                                <a href="{{ flexibeeApiUrl ~ (query | replace({'?': '.json?'})) }}" class="link-inverse" target="_blank">Run JSON query</a>
+                                  <a href="{{ flexibeeApiUrl ~ (query | replace({'?': '.xml?'})) }}" class="link-inverse" target="_blank">Run XML query</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">No queries executed</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

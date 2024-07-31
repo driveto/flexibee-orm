@@ -1,0 +1,19 @@
+includes:
+	- vendor/phpstan/phpstan-phpunit/extension.neon
+	- vendor/phpstan/phpstan-phpunit/rules.neon
+	- vendor/phpstan/phpstan-symfony/extension.neon
+	- vendor/phpstan/phpstan-symfony/rules.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+	level: max
+	treatPhpDocTypesAsCertain: false
+
+	ignoreErrors:
+		# Short ternary is not an evil...
+		- '#Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.#'
+		-
+			identifier: missingType.iterableValue
+		-
+			identifier: missingType.generics
