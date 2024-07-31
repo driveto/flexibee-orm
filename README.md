@@ -1,4 +1,12 @@
+# ⚠️ Work In Progress – NOT USABLE ⚠️
+
 # ORM layer for Flexibee API
+This is a Symfony bundle providing Object-Relational Mapping layer for the Abra Flexi (formerly FlexiBee) API.
+
+## Requirements
+* PHP 8.1+
+* Symfony 7+
+
 ## Installation
 ```bash
 $ composer require driveto/flexibee-orm
