@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Driveto\FlexibeeOrmBundle\Tests\Query;
 
+use Driveto\FlexibeeOrmBundle\FlexibeeMetadataExtractor;
 use Driveto\FlexibeeOrmBundle\Query\Expression;
 use Driveto\FlexibeeOrmBundle\Query\Operator;
 use Driveto\FlexibeeOrmBundle\Query\QueryBuilder;
 use Driveto\FlexibeeOrmBundle\Tests\Fixtures\DummyRecord;
-use Driveto\FlexibeeOrmBundle\FlexibeeMetadataExtractor;
 use PHPUnit\Framework\TestCase;
 
 final class QueryBuilderTest extends TestCase

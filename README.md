@@ -155,12 +155,19 @@ $records = $this->runCustomQuery($queryBuilder->getQuery());
 
 
 ## Q&A
+Run tests:
 ```bash
 $ ./vendor/bin/phpunit ./tests
 ```
 
+Run static analysis:
 ```bash
 $ ./vendor/bin/phpstan analyse -c phpstan.neon ./src ./tests
+```
+
+Run code sniffer:
+```bash
+$ vendor/bin/phpcs --standard=phpcs.xml --extensions=php --encoding=utf-8 -sp ./src ./tests
 ```
 
 If you use Symfony Profiler then all run queries are visible there including their execution time and the links to their JSON/XML result.

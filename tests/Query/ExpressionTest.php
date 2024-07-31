@@ -6,7 +6,6 @@ namespace Driveto\FlexibeeOrmBundle\Tests\Query;
 
 use Driveto\FlexibeeOrmBundle\Query\Expression;
 use Driveto\FlexibeeOrmBundle\Query\Operator;
-use Driveto\FlexibeeOrmBundle\Query\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class ExpressionTest extends TestCase
